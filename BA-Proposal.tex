@@ -41,7 +41,7 @@ The key to effective and time saving development of reliable software for robots
 The proposed bachelor-thesis will work on this area and will develop a simulation environment for the \textit{Logistic League Sponsored by Festo} (LLSF) with the robot software framework \textit{fawkes}~\footnote{\url{www.fawkesrobotics.org}} and the open source simulator \textit{Gazebo}. The emphasis will be the multi-robot aspect of the simulation.
 \subsection{Logistic League Sponsored by Festo}
 The Logistic League Sponsored by Festo is part of the \textit{RoboCup
-}, an international robotics competition~\footnote{\url{http://www.robocup.org/}}. LLSF aims to catalyze scientific work on autonomous solutions for logistics. The participants should find new approaches and improve already existing ones to optimize material and information flow in the industrial production. LLFS is realized in a fictional production hall. 
+}, an international robotics competition~\footnote{\url{www.robocup.org/}}. LLSF aims to catalyze scientific work on autonomous solutions for logistics. The participants should find new approaches and improve already existing ones to optimize material and information flow in the industrial production. LLFS is realized in a fictional production hall. 
 \begin{figure}
 \includegraphics[scale=0.7]{pics/llsf1}
 \label{Figure 1}
@@ -49,7 +49,7 @@ The Logistic League Sponsored by Festo is part of the \textit{RoboCup
 \end{figure}
 Figure 1 shows this hall and the basic elements. The Robots are Robotinos by Festo~\cite{Robotino}. They hold omni-directional wheels, a showel to move pucks and other sensors added by the participants. The orange pucks represent resouces and products. They are equiped with a RFID-chip which stores the type of the puck. The lamps on the field are the machines. They use RFID to convert recourses into producs and trash. There are different types of machines. They can produce different product-types, produce intermediate products, recycle trash or are used for delivery. The traffic-light on top of the machines indicates the machine-status. Beside these visual elements there is also a refbox which automatically communicates with the robots during the game. The refbox provides the current phase and tasks of the game.
 \subsection{Fawkes}
-Fawkes is an open source robot software framework developed by the Knowledge-basede Systems Group~\footnote{\url{http://www.kbsg.rwth-aachen.de/}} at RWTH Aachen University. It is written for Linux and follows a component-based software design~\cite{FawkesDesign}. It provides an infrastructure to load and unload binary components, implemented as plugins, at runtime and a blackboard for communication between the plugins. A plugin can access the blackboard via interfaces. Because of this design, Fawkes is very flexible and dynamic. The interchangeability of the plugins, which is caused by the well defined interfaces, makes hardware abstraction and reuse easy.\\
+Fawkes is an open source robot software framework developed by the Knowledge-basede Systems Group~\footnote{\url{www.kbsg.rwth-aachen.de/}} at RWTH Aachen University. It is written for Linux and follows a component-based software design~\cite{FawkesDesign}. It provides an infrastructure to load and unload binary components, implemented as plugins, at runtime and a blackboard for communication between the plugins. A plugin can access the blackboard via interfaces. Because of this design, Fawkes is very flexible and dynamic. The interchangeability of the plugins, which is caused by the well defined interfaces, makes hardware abstraction and reuse easy.\\
 \subsection{Gazebo}
 Gazebo is an open source multi-robot simulator~\cite{GazeboDesign}. It simulates the behavior of robots and other objects physically in a three dimensional world. The open source engine Ogre~\footnote{\url{http://www.ogre3d.org}} is used for the graphical presentation of the simulation. Physics are simulated with the Open Dynamics Engine~\footnote{\url{http://www.ode.org/}}. Gazebo was originally developed for outdoor applications and aims to simulate robots in a complex and realistic environment. Besides the physical simulation, it does this by generating data for different types of sensors. Gazebo can simulate laser range finders, cameras, sonar sensors, bumpers and more. This makes it able to do realistic and low level simulation. A simulation in Gazebo is made by creating robot and world models and developing Gazebo-plugins for behavior. These plugins can control objects in Gazebo and communicate with other software.
 \subsection{Proposed Bachelor Thesis}
@@ -60,9 +60,9 @@ In the following the proposal will give an overview of the related work in secti
 
 \section{Related Work}
 \subsection{Existing Context}
-The work of the proposed thesis is embedded in a already existing context of work. The Carologistigs team~\footnote{\url{http://trac.fawkesrobotics.org/wiki/Carologistics}}
+The work of the proposed thesis is embedded in a already existing context of work. The Carologistics team~\footnote{\url{http://trac.fawkesrobotics.org/wiki/Carologistics}} participates in LLFS and is a joint team consisting of Knowledge-based Systems Group at RWTH Aachen University, IMA/ZLW \& IFU Institute Cluster at RWTH Aachen University and Department for Electrical Engineering and Information Technology, Robotics Group at FH Aachen. The team participated at the RoboCup 2012 in Mexico. 
 \subsection{Comparison of Simulators}
-\subsection{Other Multi-Robot Simulations}
+\subsection{Other Multi-Robot Simulations}Leuphana
 
 
 \section{Detail}
