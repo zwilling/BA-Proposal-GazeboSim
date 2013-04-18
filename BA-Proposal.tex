@@ -23,7 +23,7 @@
 %%Title%%
 %%%%%%%%%
 \author{Frederik Zwilling 304314}
-\title{Proposal:\\ Bachelorthesis Simulation LLSF with Gazebo}
+\title{Proposal:\\ Bachelor-Thesis Simulation LLSF with Gazebo}
 \begin{document}
 \maketitle
 %\thispagestyle{empty}
@@ -37,7 +37,7 @@
 \abstract{Short description}
 \section{Introduction}
 Autonomous robots are about to play an important role in the future of logistics. They will be able to save time and cost in the industrial production process and boost the economy. Especially multi-robot-systems play an important role in this context. They are able to do distributed work, are efficient if they work together and are reliable regarding downtime of single robots. Though, the development of these logistic robots can be difficult because the robots have to handle many complex tasks. They have to detect objects, localize themselves, make a plan of what to do in which order, coordinate with other robots, optimize the work flow, be save for humans and hardware at every time and much more.\\
-The key to effective and time saving development of reliable software for robots is simulation. Simulation makes it possible to virtually test written code fast in different scenarios.This leads to better quality of the software and better performance of the robot. By simulating the behavior of a robot much time can be saved because there is no real robot which has to be set up and the simulation can quickly change between different scenarios. Furthermore it is possible to speed the simulation up or run multiple simulations at once. Simulation also makes testing possible if no real robot is available and can be easily used to compare different versions of the software. For example this can be useful to find unknown parameters like thresholds.\\
+The key to effective and time saving development of reliable software for robots is simulation. Simulation makes it possible to virtually test written code fast in different scenarios.This leads to better quality of the software and better performance of the robot. By simulating the behavior of a robot much time can be saved because there is no real robot which has to be set up and the simulation can quickly change between different scenarios. Furthermore it is possible to speed the simulation up or run multiple simulations at once. Simulation also makes testing possible if no real robot is available and can be easily used to compare different versions of the software. For example this can be useful to find unknown parameters like thresholds. An other advantage is the safety aspect. Testing new code on a real robot can be dangerous because the code can lead to unintended behavior.\\
 The proposed bachelor-thesis will work on this area and will develop a simulation environment for the \textit{Logistic League Sponsored by Festo} (LLSF) with the robot software framework \textit{fawkes}~\footnote{\url{www.fawkesrobotics.org}} and the open source simulator \textit{Gazebo}. The emphasis will be the multi-robot aspect of the simulation.
 \subsection{Logistic League Sponsored by Festo}
 The Logistic League Sponsored by Festo is part of the \textit{RoboCup
@@ -63,7 +63,18 @@ In the following the proposal will give an overview of the related work in secti
 The work of the proposed thesis is embedded in a already existing context of work. The Carologistics team~\footnote{\url{http://trac.fawkesrobotics.org/wiki/Carologistics}} participates in LLFS and is a joint team consisting of Knowledge-based Systems Group at RWTH Aachen University, IMA/ZLW \& IFU Institute Cluster at RWTH Aachen University and Department for Electrical Engineering and Information Technology, Robotics Group at FH Aachen. The team has developed a working system for LLSF and participated in the RoboCup 2012 in Mexico. Thus, there are many things to do. There are changes in the rules and challenges of LLSF. Furthermore the team is changing the architecture of the Robotinos. A laptop mounted on the robot should ensure that there is enough computational power (e.g. for localization). Of course, the most general task is to improve the performance of the robot to be successful in the competition. The work of Carologistics is based on fawkes. It additionally uses ROS~\footnote{\url{www.ros.org/}} for \textcolor{red}{what?}.\\
 Some work was already done on Gazebo for Fawkes. Bastian Klingen developed in his diploma thesis~\cite{KlingenDA} a scene reconstruction for fault analysis. It was primary made for a mobile robot which has to pick up a colored cup with a gripper arm. The motions, sensor data and belief of the robot are stored in a database. If the process fails, the scene reconstruction visualizes what happened from the robots point of view to make fault analysis possible. The visualization was made with Gazebo. In the implementation Klingen also made a general Gazebo-aspect for Fawkes. This can be used as a starting point for the proposes thesis and may be enchanted if it is necessary or useful \textcolor{red}{details???}.
 \subsection{Comparison of Simulators}
+This subsection presents an overview of the mainly used robot simulators that are able to support LLSF. Afterwards there is reasoned why Gazebo is chosen as the most appropriate simulator for the thesis.
+\subsubsection{Other Robot Simulators}
+A often used robot simulator is \textit{Stage}~\footnote{\url{playerstage.sourceforge.net/index.php?src=stage}}. It is part of the \textit{Player/Stage} project~\cite{PlayerStage} and provides an easy to use simulation environment for \textit{Player}, a widely used robot control interface. Stage is an open source 2D-simulator and supports large populations of robots. \\
+\textit{Webbots}~\footnote{\url{www.cyberbotics.com}} is a commercial 3D-simulator~\cite{Webbots}. It is platform independent and can simulate several robots at the same time. It is able to run simulations faster then real time if the complexity of the simulation allows this.\\
+\textit{USARSim}~\cite{USARSim} was originally intended as a urban search and rescue simulation but it can also be used for other domains. It is platform independent and free of charge for research and education. It is used in the Rescue Virtual Robot Competition within the RoboCup.\\
+\textit{SIMRobot}~\footnote{\url{www.informatik.uni-bremen.de/simrobot}} is an open source 3D-simulator and platform independent. It is used by multiple teams in the RoboCup~\cite{SIMRobot}. It has been developed by the University Bremen since 1994.\\
+The \textit{Microsoft Robotics Developer Studio}~\footnote{www.microsoft.com/robotics} is free for noncommercial use and bound to Microsoft Windows. Besides the simulation it offers standartization for robotic control and several tools for robot development~\cite{MicrosoftRobotSimulator}.\\
+\textcolor{red}{\textit{Robotino Sim Professional}}\\
+\textcolor{red}{\textit{OpenSim}}
 
+
+\subsubsection{Advantages of the Gazebo Simulator}
 \subsection{Other Multi-Robot Simulations}
 
 
