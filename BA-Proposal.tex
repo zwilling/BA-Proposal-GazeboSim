@@ -75,9 +75,50 @@ The \textit{Microsoft Robotics Developer Studio}~\footnote{\url{www.microsoft.co
 The Gazebo simulator has many advantages for this thesis~\cite{GazeboDesign}. It is open source what makes it free to use and easy to edit if something is missing. For example drawing additional lines during runtime is not supported. \cite{KlingenDA} implemented this to draw a grid. It is important that Gazebo is a 3D-simulator because camera sensors can not be simulated in a two dimensional simulator. The physics engine and realistic graphics are indispensable for a realistic simulation. It is possible in Gazebo to assign for example friction and reflection values to an object. So, even the problem of a reflecting ground can be simulated if you are developing a light-seeking vision program. Other advantages are that Gazebo runs in Linux and has an active community and a beginner friendly documentation. Furthermore, it already includes many common used robots-models and sensors. Therefore it is only rarely necessary to implement own sensor plugins. Additional to that, Gazebo seems to be well suited for future work. It is a general multi-robot simulator and is well founded. Gazebo was chosen as the basis for the \textit{DARPA Robotics Challenge Simulator 2013}~\footnote{http://spectrum.ieee.org/automaton/robotics/robotics-software/darpa-robotics-challenge-simulation-software-open-source-robotics-foundation}. A more practical advantage of Gazebo is that some work was already done on Gazebo in Fawkes by~\cite{KlingenDA}.\\
 There are not many disadvantages of Gazebo. One is that Gazebo can not handle a larger number of robots~\cite{GazeboDesign}. The complexity of the simulations limits the number of robots on the order of ten~\footnote{Information from 2004}. This is no problem for this work because in LLSF there are only three robots.
 \subsection{Other Multi-Robot Simulations}
+There are several other multi-robot simulation environments. \cite{MultiLevelAbstraction}~simulates the Middle-size soccer league of RoboCup and also works with Gazebo, but used Player for robot control. In the Middle-size soccer league there are two teams with five robots under the size of 90 cm. Therefore the simulation has to handle up to ten robots at once. In this work similar equipment was simulated as used by Carologistics. \cite{MultiLevelAbstraction}~simulated a prototype of omni-directional wheels and an omni-vision camera. Figure 2 shows these two devices in the simulation.
+\begin{figure}
+\includegraphics[scale=0.5]{pics/GazeboEquipment}
+\label{Figure 2}
+\caption{An omni-directional wheel prototype build in Gazebo (left) and the simulated picture taken of an omni-vision camera (right)~\cite{MultiLevelAbstraction}.}
+\end{figure}
+The omni-directional wheels of the Robotino work in the same way, but have a different design that needs to be modeled. The omni-vision camera mounted on the Robotino of Carologistics is very similar to the camera on the soccer-robots. The gazebo-plugin for this camera can be reused. The main point of~\cite{MultiLevelAbstraction} is the multi-level abstraction of the simulation. That means that the simulation is able to simulate with different complexities. For example, the simulation can simulate on the physical level, where the robot software has to do movements and sensing as in the real world, and on a high logical level, where the robot moves exactly like intended and the simulation tells the robot exactly where it is located. These different abstraction levels are also important for the proposed thesis because they make the simulation more flexible and are well suited as milestones of the development of the simulation. \cite{MultiLevelAbstraction}~also shows that the speed of the simulation is an important aspect. If the simulation does not run fast enough to simulate in real-time, the behavior of the simulated robots can change because many processes running on the agent measure the time itself. \cite{MultiLevelAbstraction}~dealed with this problem by changing the source code of the robot-software and telling it the simulation time instead of the system time. If possible, this should be avoided by the thesis.\\
+An other related work is~\cite{SurveillanceSystem}. It used Gazebo and Player to simulate a surveillance system with Pioneer3AT robots. In this system several robots have to monitor an outdoor area and find possible intruders. Therefore the robots have to spread over the area and coordinate their movements. The simulation was important for the development of the system because it could quickly simulate different areas and situations.
+
+\section{Details of Work}
+This section presents the goals of the thesis and how they will be reached in detail. Because it is difficult to estimate how much time the development of the simulation will take and what difficulties will appear during this time, we define the minimum goals here and give some additional goals, which will be worked on if there is some time left. These additional goals are separated in wanted goals and optional, but very attractive goals. Table 1 shows an overview of the goals and their level.
+
+\begin{table}
+\begin{tabular}{|r||p{10cm}|}
+\hline
+Minimum & \begin{itemize}
+\item Simulation environment for LLSF
+\item High level simulation of the Robotino (exact position, exact movement)
+\item Multiple communicating robots at the same time
+\item Measurement of simulation speed and qualitative evaluation of the simulation
+\item Detailed documentation how to use the simulation in the wiki
+\end{itemize}\\ \hline
+Wanted & \begin{itemize}
+\item More general simulation (with abstraction layer)
+\item Low level simulation of the Robotino (motor movement, laser and camera sensors)
+\item Quantitative evaluation of simulation
+\item Evaluation of robot behavior in simulation in comparison to reality
+\item Detailed documentation how to extend the simulation for other tasks
+\end{itemize}\\ \hline
+Maximum & \begin{itemize}
+\item Simulation with multi-level abstraction
+\item Performance measuring of LLSF playing robots (automated running of the simulation)
+\item Speedup of the simulation (if possible)
+\item Simulation of LLSF challenges
+\item Use of simulation at other tasks
+\end{itemize}\\
+\hline
+\end{tabular}
+\label{Table 1}
+\caption{Minimal, wanted and maximal goals, which should be reached by the thesis.}
+\end{table}
+The goals are designed and ordered this way so that the minimal goals can be achieved first. The other goals depends on the ones before. This is especially important for the abstraction of the simulation environment and the detail-level of the simulation. First a simple, working and quickly achievable simulation for LLSF with exact motion and position sensing should be developed. With this basis, further work is possible.\\
 
 
-\section{Detail}
 \section{Timetable}
 \section{Evaluation}
 \section{Conclusion}
