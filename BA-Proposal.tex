@@ -85,7 +85,7 @@ The omni-directional wheels of the Robotino work in the same way, but have a dif
 An other related work is~\cite{SurveillanceSystem}. It used Gazebo and Player to simulate a surveillance system with Pioneer3AT robots. In this system several robots have to monitor an outdoor area and find possible intruders. Therefore the robots have to spread over the area and coordinate their movements. The simulation was important for the development of the system because it could quickly simulate different areas and situations.
 
 \section{Details of Work}
-This section presents the goals of the thesis and how they will be reached in detail. Because it is difficult to estimate how much time the development of the simulation will take and what difficulties will appear during this time, we define the minimum goals here and give some additional goals, which will be worked on if there is some time left. These additional goals are separated in wanted goals and optional, but very attractive goals. Table 1 shows an overview of the goals and their level.
+This section presents the goals of the thesis and how they will be reached in detail. Because it is difficult to estimate how much time the development of the simulation will take and what difficulties will appear during this time, we define minimum goals here and give some additional goals, which will be worked on if the minimum goals are achieved. These additional goals are separated in wanted goals and optional, but very attractive goals. Table 1 shows an overview of the goals and their level.
 
 \begin{table}
 \begin{tabular}{|r||p{10cm}|}
@@ -116,12 +116,13 @@ Maximum & \begin{itemize}
 \label{Table 1}
 \caption{Minimal, wanted and maximal goals, which should be reached by the thesis.}
 \end{table}
-The goals are designed and ordered this way so that the minimal goals can be achieved first. The other goals depends on the ones before. This is especially important for the abstraction of the simulation environment and the detail-level of the simulation. First a simple, working and quickly achievable simulation for LLSF with exact motion and position sensing should be developed. With this basis, further work is possible.\\
-
+The goals are designed and ordered this way so that the minimal goals can be achieved first. The other goals depends on the ones before. This is especially important for the abstraction of the simulation environment and the detail-level of the simulation. First a simple, working and quickly achievable simulation for LLSF with exact motion and position sensing should be developed. With this basis, further work is possible. This approach is inspired by agile programming. The version control system used by the thesis will be Git. All important constants and configuration for the code will be defined in configuration files to make it easier to change and manage them. Because the aim is to develop a simulation with an abstract basis, the code will be made reusable to support future work.\\
+As said before the work will structurally consist of plugins for Gazebo and plugins for Fawkes. Similar to~\cite{KlingenDA} the Gazebo-plugins will be a robot-control plugin an object-instantiator plugin. Additional to that, we need robot-sensor plugins and a LLSF-control plugin, which controls the machines and pucks to provide the LLSF game logic. On the other side, there will be fawkes plugins for the robotino to controll the movements and for the sensors.
 
 \section{Timetable}
 \section{Evaluation}
 \section{Conclusion}
+Future Work
 
 \bibliographystyle{plain}
 \bibliography{references}
