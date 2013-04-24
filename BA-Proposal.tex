@@ -119,8 +119,18 @@ Maximum & \begin{itemize}
 The goals are designed and ordered this way so that the minimal goals can be achieved first. The other goals depends on the ones before. This is especially important for the abstraction of the simulation environment and the detail-level of the simulation. First a simple, working and quickly achievable simulation for LLSF with exact motion and position sensing should be developed. With this basis, further work is possible. This approach is inspired by agile programming. The version control system used by the thesis will be Git. All important constants and configuration for the code will be defined in configuration files to make it easier to change and manage them. Because the aim is to develop a simulation with an abstract basis, the code will be made reusable to support future work.\\
 As said before the work will structurally consist of plugins for Gazebo and plugins for Fawkes. Similar to~\cite{KlingenDA} the Gazebo-plugins will be a robot-control plugin an object-instantiator plugin. Additional to that, we need robot-sensor plugins and a LLSF-control plugin, which controls the machines and pucks to provide the LLSF game logic. On the other side, there will be fawkes plugins for the robotino to controll the movements and for the sensors.
 
-\section{Timetable}
+\textcolor{red}{difficulties} 
+
+\section{Time-schedule}
+\textcolor{red}{Andere Zeitpläne anschauen}
+
 \section{Evaluation}
+This section covers the evaluation of the proposed thesis. On the one hand we will give a qualitative analysis how well the simulation works from an obvios point of view, on the other hand we will give an quantitative analysis of the performance and scalibility of the simulation.\\
+The qualitative evaluation analyzes the functionality of the simulation and the realized features. It will evaluate which components and problem scenarios can be well simulated and where the difficulties are in the other problem scenarios. The aim of the evaluation is to compare the robot behavior in the simulation to the behavior in reality. To do this, it is neccessary to look at the difference in the sensor data first because this may be the main cause for different behavior. Furthermore the difference of multi-robot behavior needs to be analyzes. This will be more challenging because of the greater complexity.\\
+In the quantitative evaluation the speed of the simulation is important because a difference between real-time and simulation-time can also cause differences in the behavior. The network latency can be a cause for difference in the difference in the coordination between the robots. An other part of the quantitative evaluation is to measure the cpu and memory usage. Because the thesis is about a multi-robot simulation, the scaleablitlity of the simulation has to be measured to. This means to measure the simulation speed, cpu and memory usage in relation to the number of robots simulated.\\
+A possibility to compare the sensor-data more detailed can be to run the simulation while a Robotino is actually operating in reality and let the Robotino work with the real data from the sensors. With this method the the simulated and real data can be compared in real time.
+
+
 \section{Conclusion}
 Future Work
 
