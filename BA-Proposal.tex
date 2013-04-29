@@ -83,11 +83,12 @@ There are several other multi-robot simulation environments. \cite{MultiLevelAbs
 \end{figure}
 The omni-directional wheels of the Robotino work in the same way, but have a different design that needs to be modeled. The omni-vision camera mounted on the Robotino of Carologistics is very similar to the camera on the soccer-robots. The gazebo-plugin for this camera can be reused. The main point of~\cite{MultiLevelAbstraction} is the multi-level abstraction of the simulation. That means that the simulation is able to simulate with different complexities. For example, the simulation can simulate on the physical level, where the robot software has to do movements and sensing as in the real world, and on a high logical level, where the robot moves exactly like intended and the simulation tells the robot exactly where it is located. These different abstraction levels are also important for the proposed thesis because they make the simulation more flexible and are well suited as milestones of the development of the simulation. \cite{MultiLevelAbstraction}~also shows that the speed of the simulation is an important aspect. If the simulation does not run fast enough to simulate in real-time, the behavior of the simulated robots can change because many processes running on the agent measure the time itself. \cite{MultiLevelAbstraction}~dealed with this problem by changing the source code of the robot-software and telling it the simulation time instead of the system time. If possible, this should be avoided by the thesis.\\
 An other related work is~\cite{SurveillanceSystem}. It used Gazebo and Player to simulate a surveillance system with Pioneer3AT robots. In this system several robots have to monitor an outdoor area and find possible intruders. Therefore the robots have to spread over the area and coordinate their movements. The simulation was important for the development of the system because it could quickly simulate different areas and situations.
-\textcolor{red}{soccer simulations}
+\textcolor{red}{soccer simulations NAO webbots (weebots)\\ multi agent simulation without robots}
 
 
 \section{Details of Work}
 This section presents the goals of the thesis and how they will be reached in detail. Because it is difficult to estimate how much time the development of the simulation will take and what difficulties will appear during this time, we define minimum goals here and give some additional goals, which will be worked on if the minimum goals are achieved. These additional goals are separated in wanted goals and optional, but very attractive goals. Table 1 shows an overview of the goals and their level.
+\textcolor{red}{of course documentation}
 
 \begin{table}
 \begin{tabular}{|r||p{10cm}|}
@@ -95,23 +96,21 @@ This section presents the goals of the thesis and how they will be reached in de
 Minimum & \begin{itemize}
 \item Simulation environment for LLSF
 \item High level simulation of the Robotino (exact position, exact movement)
-\item Multiple communicating robots at the same time
+\item Execution of multiple agents in the simulation with communication
 \item Measurement of simulation speed and qualitative evaluation of the simulation
-\item Detailed documentation how to use the simulation in the wiki
 \end{itemize}\\ \hline
 Wanted & \begin{itemize}
-\item More general simulation (with abstraction layer)
 \item Low level simulation of the Robotino (motor movement, laser and camera sensors)
+\item Simulation of LLSF challenges
 \item Quantitative evaluation of simulation
 \item Evaluation of robot behavior in simulation in comparison to reality
-\item Detailed documentation how to extend the simulation for other tasks
 \end{itemize}\\ \hline
 Maximum & \begin{itemize}
+\item More general simulation (with abstraction layer)
 \item Simulation with multi-level abstraction
 \item Performance measuring of LLSF playing robots (automated running of the simulation)
 \item Speedup of the simulation (if possible)
-\item Simulation of LLSF challenges
-\item Use of simulation at other tasks
+\item Cpomarison of different multi-robot strategies
 \end{itemize}\\
 \hline
 \end{tabular}
@@ -133,7 +132,7 @@ In the quantitative evaluation the speed of the simulation is important because 
 A possibility to compare the sensor-data more detailed can be to run the simulation while a Robotino is actually operating in reality and let the Robotino work with the real data from the sensors. With this method the the simulated and real data can be compared in real time.
 
 \section{Conclusion}
-The thesis proposed here will develop a multi-robot simulation environment for LLSF with Fawkes and Gazebo. It is the basis for efficient and quality assured work of current and future developments. The simulation environment will concentrate on the LLSF league, which \textcolor{red}{fördert} research on logistic robotics to prepare a new logistical and industrial revolution. On the other side the simulation environment should base on an abstract layer. This layer makes it possible to extend the simulation and able to use it for other multi-robot simulation tasks. A part of the thesis will be built on previous work by \cite{KlingenDA} and \cite{MultiLevelAbstraction}. 
+The thesis proposed here will develop a multi-robot simulation environment for LLSF with Fawkes and Gazebo. It is the basis for efficient and quality assured work of current and future developments. The simulation environment will concentrate on the LLSF league, which \textcolor{red}{fördert} research on logistic robotics to prepare a new logistical and industrial revolution. The proposal showed a set of multi-robot simulators and their use in some domains. A part of the thesis will be built on previous work by \cite{KlingenDA} and \cite{MultiLevelAbstraction}. 
 
 
 \bibliographystyle{plain}
