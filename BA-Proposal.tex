@@ -86,35 +86,32 @@ Another related work is~\cite{SurveillanceSystem}. It uses Gazebo and Player to 
 The 3D-Soccer-Simulation League in the RoboCup uses Simspark as simulator~\footnote{\url{www.robocupgermanopen.de/sites/default/files/rules_GO_2013_3Dsim.pdf}}. In this league two teams of eleven NAO robots each play in the simulation. The competition and comparison between the different approaches of multi-agent strategies make this league interesting for the thesis. There are some works such as~\cite{SoccerChampion} which show the capability of the simulator to simulate complex movements and agent architectures.
 
 \section{Details of Work}
-This section presents the goals of the thesis and how they will be reached in detail. Because it is difficult to estimate how much time the development of the simulation will take and what difficulties will appear during this time, minimum and additional goals are defined here. After the minimum goals are reached, the additional ones will be worked on. The additional goals are separated into wanted goals and optional, but very attractive goals. Table 1 shows an overview of all goals and their level.
+This section presents the goals of the thesis and how they will be reached in detail. Minimum and additional goals are defined here. When the minimum goals are reached fast enough, the additional ones will be worked on. This separation is necessary because of the difficulty to estimate what problems will appear. The most problems will probably lie in detail. The additional goals are not necessary for the simulation of LLSF, but very attractive. Table 1 shows an overview of all goals and their level.
 
 \begin{table}
 \begin{tabular}{|r||p{10cm}|}
 \hline
 Minimum & \begin{itemize}
 \item Simulation environment for LLSF
-\item High level simulation of the Robotino (exact position, exact movement)
+\item High level simulation (exact position, exact movement)
+\item Low level simulation(motor movement, laser and camera sensors)
 \item Execution of multiple agents in the simulation with communication
-\item Measurement of simulation speed and qualitative evaluation of the simulation
-\end{itemize}\\ \hline
-Wanted & \begin{itemize}
-\item Low level simulation of the Robotino (motor movement, laser and camera sensors)
-\item Simulation of LLSF challenges
 \item Quantitative evaluation of simulation
 \item Evaluation of robot behavior in simulation in comparison to reality
 \end{itemize}\\ \hline
-Maximum & \begin{itemize}
+Additional & \begin{itemize}
 \item More general simulation (with abstraction layer)
 \item Simulation with multi-level abstraction
-\item Performance measuring of LLSF playing robots (automated running of the simulation)
-\item Speedup of the simulation (if possible)
+\item Simulation of LLSF challenges
 \item Comparison of different multi-robot strategies
+\item Performance measuring of LLSF playing robots (automated running of the simulation)
 \end{itemize}\\
 \hline
 \end{tabular}
 \label{Table 1}
-\caption{Minimal, wanted and maximal goals, which should be reached during the thesis.}
+\caption{Minimal and additional goals, defined for the thesis.}
 \end{table}
+\textcolor{red}{restructure (no wanted, maximum, detailed description)}
 The goals are designed and ordered in a way so the minimal goals can be achieved first. The other goals depend on the prior ones. This is especially important for the abstraction of the simulation environment and the detail-level of the simulation. First, a simple, working and quickly achievable simulation for LLSF with exact motion and position sensing will be developed. With this basis, further work is possible. This approach is inspired by agile programming. The version control system used by the thesis will be Git. All important constants and configurations for the code will be defined in configuration files to make changes and management easier. Because the aim is to develop a simulation with an abstract basis, the code will be made reusable to support future work.\\
 As said before, the work will structurally consist of plugins for Gazebo and plugins for Fawkes. Similar to~\cite{KlingenDA} the Gazebo-plugins will be a robot-control plugin and an object-creator plugin. In addition, robot-sensor plugins and an LLSF-control plugin, which controls the machines and pucks to provide the LLSF game logic,  are needed. On the other side, there will be Fawkes plugins  for the sensors and for the Robotino to control the movements.
 
@@ -136,7 +133,7 @@ In the quantitative evaluation the speed of the simulation is important because 
 A possibility to compare the sensor-data in more detail can be to run the simulation while a Robotino is actually operating in reality and letting the Robotino work with the real data from the sensors. With this method both simulated and real data can be compared in real-time.
 
 \section{Conclusion}
-The thesis proposed here will develop a multi-robot simulation environment for LLSF with Fawkes and Gazebo. It is the basis for efficient and quality-assured work of current and future developments. The simulation environment will concentrate on the LLSF league, which promotes research on logistic robotics to prepare a new logistical and industrial revolution. The proposal showed that Gazebo is well suited as simulator for LLSF and future work. A part of the thesis will be built on previous work by \cite{KlingenDA} and \cite{MultiLevelAbstraction}. The proposal also defined goals in three levels to develop a working basis first and to build on this basis to achieve higher goals. The evaluation will look at qualitative and quantitative aspects to ensure the quality and performance of the simulation.\\
+The thesis proposed here will develop a multi-robot simulation environment for LLSF with Fawkes and Gazebo. It is the basis for efficient and quality-assured work of current and future developments. The simulation environment will concentrate on the LLSF league, which promotes research on logistic robotics to prepare a new logistical and industrial revolution. The proposal showed that Gazebo is well suited as simulator for LLSF and future work. A part of the thesis will be built on previous work by \cite{KlingenDA} and \cite{MultiLevelAbstraction}. The proposal also defined minimum and additional goals in Table 1. The evaluation will look at qualitative and quantitative aspects to ensure the quality and performance of the simulation.\\
 However, the main point of the thesis is to support future work. Although the simulation is primarily made for LLSF, it is also an important step for other developments because Gazebo can simulate almost every robot and other simulations can base on this thesis.
 
 
