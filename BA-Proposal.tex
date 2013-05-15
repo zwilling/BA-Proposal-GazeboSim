@@ -94,25 +94,26 @@ This section presents the goals of the thesis and how they will be reached in de
 Minimum & \begin{itemize}
 \item Simulation environment for LLSF
 \item High level simulation (exact position, exact movement)
-\item Low level simulation(motor movement, laser and camera sensors)
-\item Execution of multiple agents in the simulation with communication
+\item Low level simulation (laser and camera sensors, motor movement)
+\item Execution of multiple and communicating agents in the simulation
 \item Quantitative evaluation of simulation
 \item Evaluation of robot behavior in simulation in comparison to reality
 \end{itemize}\\ \hline
 Additional & \begin{itemize}
 \item More general simulation (with abstraction layer)
-\item Simulation with multi-level abstraction
+\item Multi-level abstraction
 \item Simulation of LLSF challenges
 \item Comparison of different multi-robot strategies
-\item Performance measuring of LLSF playing robots (automated running of the simulation)
 \end{itemize}\\
 \hline
 \end{tabular}
 \label{Table 1}
 \caption{Minimal and additional goals, defined for the thesis.}
 \end{table}
-\textcolor{red}{restructure (no wanted, maximum, detailed description)}
-The goals are designed and ordered in a way so the minimal goals can be achieved first. The other goals depend on the prior ones. This is especially important for the abstraction of the simulation environment and the detail-level of the simulation. First, a simple, working and quickly achievable simulation for LLSF with exact motion and position sensing will be developed. With this basis, further work is possible. This approach is inspired by agile programming. The version control system used by the thesis will be Git. All important constants and configurations for the code will be defined in configuration files to make changes and management easier. Because the aim is to develop a simulation with an abstract basis, the code will be made reusable to support future work.\\
+Developing a simulation of LLSF means in detail to create a realistic environment in the simulation similar to Figure 1. The communication between Fawkes and Gazebo will be realized by using Google's Protocol Buffers\footnote{Commonly known as Protobuf. More information is available under \url{code.google.com/p/protobuf/}.}, a flexible and easy to use data exchange format. The main reason for this choise is that it is used for communication in the Gazebo API and in~\cite{KlingenDA}.\\
+On the one hand the movement orders from Fawkes will be executed in Gazebo and on the other hand the Gazebo plugins will simulate the sensing and will send the data to Fawkes. These two sides of the simulation will be developed in different levels. In the higher level, Gazebo tells Fawkes the exact position of the simulated Robotino and all movement commands are executed exactly. In the lower level, the movement is realized by using the physics engine and only the rotation of the wheels is simulated. Fakes receives only raw laser-data and captured images.\\
+An important task of the thesis is the simulation of multiple robots controlled by separately running Fawkes instances in the same Gazebo environment at the same time. Maybe a global administrator plugin, which manages the mapping between Fawkes instances and simulated Robotinos, is necessary. The communication between the Fawkes instances has not to be simulated because the local network is available~\footnote{This allows to run Fawkes and Gazebo on different machines and can be useful to test a already set up Robotino before a competition.}. The details of evaluation are discussed after the next section.\\
+The probably most important additional goal is to achieve abstraction, so other developments beside LLSF can benefit from this thesis. The approach is to build additional abstraction layers for Fakes and Gazebo plugins which encapsulates the communication between Fawkes and Gazebo as well as other functionality that is not domain specific. This is done as a second step to achieve a working simulation quicker and to benefit from the knowledge gained in the first run. The second additional goal is the multi-level abstraction similar to~\cite{MultiLevelAbstraction}. It should be possible to choose the detail-level of the simulation. The next additional goal is to simulate the technical challenges of LLSF. This can be done by changing the behavior of the LLSF environment in the simulation. The comparison of different multi-robot strategies to solve the LLSF task is a long term goal of Carologistics. If there is enough time left, the thesis can compare two strategies (e.g. Master-Slave job assigning or a job blackboard) to prepare further work and show the capabilities of the simulator.\\
 As said before, the work will structurally consist of plugins for Gazebo and plugins for Fawkes. Similar to~\cite{KlingenDA} the Gazebo-plugins will be a robot-control plugin and an object-creator plugin. In addition, robot-sensor plugins and an LLSF-control plugin, which controls the machines and pucks to provide the LLSF game logic,  are needed. On the other side, there will be Fawkes plugins  for the sensors and for the Robotino to control the movements.
 
 \section{Time-schedule}
