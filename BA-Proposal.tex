@@ -1,10 +1,12 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[a4paper,11pt]{article}
 
 %%%%%%%%%
 %%usees%%
 %%%%%%%%%
 \usepackage[utf8]{inputenc}
 %\usepackage[ngerman]{babel}
+%\usepackage{a4wide}
+\usepackage[margin=3.0cm, top=3.0cm, bottom=3.0cm]{geometry}
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{amssymb} 
@@ -42,6 +44,7 @@ The proposed bachelor-thesis will work on this area and will develop a simulatio
 \subsection{Logistic League Sponsored by Festo}
 The Logistic League Sponsored by Festo is part of the \textit{RoboCup}, an international robotics competition~\footnote{\url{www.robocup.org/}}. LLSF aims to foster scientific work on autonomous solutions for logistics. The participants should find new approaches and improve already existing ones to optimize material and information flow in logistics. LLSF takes place  in a fictional production hall. 
 \begin{figure}
+\centering
 \includegraphics[scale=0.3]{pics/llsf}
 \label{Figure 1}
 \caption{A half of the LLSF field. Two Robotinos of Carologistics at the RoboCup German Open 2013}
@@ -77,6 +80,7 @@ There are not many disadvantages of Gazebo. One is that Gazebo can not handle a 
 \subsection{Other Multi-Robot Simulations}
 There are several other multi-robot simulation environments. \cite{MultiLevelAbstraction}~simulates the Middle-size soccer league of RoboCup and also works with Gazebo, but used Player for robot control. In the Middle-size soccer league there are two teams with five robots under the size of 90 cm. Therefore, the simulation has to handle up to ten robots at once. In this work, similar equipment was simulated as used by Carologistics. \cite{MultiLevelAbstraction}~simulated prototypes of omni-directional wheels and an omni-vision camera. Figure 2 shows these two devices in the simulation.
 \begin{figure}
+\centering
 \includegraphics[scale=0.5]{pics/GazeboEquipment}
 \label{Figure 2}
 \caption{An omni-directional wheel prototype built in Gazebo (left) and the simulated picture taken of an omni-vision camera (right)~\cite{MultiLevelAbstraction}.}
@@ -89,6 +93,7 @@ The 3D-Soccer-Simulation League in the RoboCup uses Simspark as simulator~\footn
 This section presents the goals of the thesis and how they will be reached in detail. Minimum and additional goals are defined here. When the minimum goals are reached fast enough, the additional ones will be worked on. This separation is necessary because of the difficulty to estimate what problems will appear. The most problems will probably lie in detail. The additional goals are not necessary for the simulation of LLSF, but very attractive. Table 1 shows an overview of all goals and their level.
 
 \begin{table}
+\centering
 \begin{tabular}{|r||p{10cm}|}
 \hline
 Minimum & \begin{itemize}
@@ -119,6 +124,7 @@ As said before, the work will structurally consist of plugins for Gazebo and plu
 \section{Time-schedule}
 
 \begin{table}
+\centering
 \includegraphics[scale=0.43]{pics/Schedule.png}
 \label{Table 2}
 \caption{Time-schedule}
