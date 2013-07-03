@@ -1,12 +1,3 @@
-%references:
-%Multi-Robot Motion Planning by Incremental Coordination
-
-%Controlling cooperative problem solving in industrial multi-agent systems using joint intentions
-
-%A Scheme for Coordinating Multi-robot Planning Activities and Plans Execution
-
-%
-
 \documentclass[a4paper,11pt]{article}
 
 %%%%%%%%%
@@ -33,7 +24,7 @@
 %%Title%%
 %%%%%%%%%
 \author{Frederik Zwilling 304314}
-\title{Bachelor-Thesis Proposal:\\ Multi-Robot Simulation of the RoboCup Logistic League with Fawkes and Gazebo}
+\title{Bachelor-Thesis Proposal:\\ Multi-Robot Simulation of the RoboCup Logistic League with Fawkes and Gazebo for Multi-Robot Coordination Evaluation}
 \begin{document}
 %\thispagestyle{empty}
 %\tableofcontents
@@ -45,7 +36,7 @@
 %%%%%%%%
 
 \section{Introduction}
-Autonomous multi-robot systems are about to play an important role in the future of logistics and production. They are able to save time and cost in logistics and the industrial production process. Existing systems in the warehousing domain, such as~\cite{{Kiva}}, already show the potential of autonomous robots to boost efficiency in many ways. Multi-robot-systems have a huge potential because they are able to do work distributed and in parallel, are efficient if they work together and are more reliable than single robots. Though, the development of multi-robot systems for logistics can be difficult because the robots have to handle many complex tasks. They have to detect objects, localize themselves, make a plan of what to do in which order, coordinate with other robots, optimize the work flow and be safe for humans and hardware all the time.\\
+Autonomous multi-robot systems are about to play an important role in the future of logistics and production. They are able to save time and cost in logistics and the industrial production process. Existing systems in the warehousing domain, such as~\cite{{Kiva}}, already show the potential of autonomous robots to boost efficiency in many ways. Multi-robot-systems have a big potential because they are able to do work distributed and in parallel, are efficient if they work together and are more reliable than single robots. Though, the development of multi-robot systems for logistics can be difficult because the robots have to handle many complex tasks. They have to detect objects, localize themselves, make a plan of what to do in which order, coordinate with other robots, optimize the work flow and be safe for humans and hardware all the time.\\
 A key to effective and time saving development of reliable software for robots is simulation. Simulation makes it possible to test written code fast in different scenarios. This leads to a better quality of the software and better performance of the robot. By simulating the behaviour of a multi-robot system much time can be saved because there are no real robot which have to be set up and the simulation can quickly change between different scenarios. Simulation also enables testing if no real robots are available and can be easily used to compare different versions of the software. For example this can be useful to find unknown parameters such as thresholds.\\
 The proposed bachelor-thesis will develop a multi-robot simulation environment for the \textit{Logistic League Sponsored by Festo} (LLSF) and the robot software framework \textit{Fawkes}\footnote{\url{http://www.fawkesrobotics.org}}. The multi-robot simulation primarily requires a simulation, that is able to properly simulate single robots. If this basis simulation works on a high level logic and a nearly physical level as well, most of the problems in the development of the robot system can be simulated. As a basis simulation, the open source simulator \textit{Gazebo} was chosen.\\
 In the following the proposal shows the background of the thesis in section 2. Section 3 gives an overview of related work. Other simulators and multi-robot simulations are shown there and it is argued why gazebo was chosen as simulator for this thesis. Section 4 presents the proposed work in detail. It defines goals, gives a schedule and discusses how the evaluation of the thesis can be done. The conclusion is found in section 5.
@@ -105,34 +96,21 @@ The 3D-Soccer-Simulation League in the RoboCup uses Simspark as simulator\footno
 
 \section{Details of Work}
 \subsection{Goals}
-This section presents the goals of the thesis and how they will be reached in detail. Table 1 shows an overview of all goals and their level.
-
-\begin{table}
-\centering
-\begin{tabular}{|r||p{10cm}|}
-\hline
-Minimum & \begin{itemize}
-\item Simulation environment for LLSF
-\item High level simulation (exact position, exact movement)
-\item Low level simulation (laser and camera sensors, motor movement)
-\item Execution of multiple and communicating agents in the simulation
-\item Quantitative evaluation of simulation
-\item Evaluation of robot behavior in simulation in comparison to reality
-\item Simulation of LLSF challenges
-\item More general simulation (with abstraction layer)
-\end{itemize}\\ \hline
-Additional & \begin{itemize}
-\item Comparison of different multi-robot strategies
-\end{itemize}\\
-\hline
-\end{tabular}
-\label{Table 1}
-\caption{Goals defined for the thesis. The additional goal will be worked on last depending on how mush time is left.}
-\end{table}
-Developing a simulation of LLSF means in detail to create a realistic environment in the simulation similar to Figure 1. The communication between Fawkes and Gazebo will be realized by using Google's Protocol Buffers\footnote{\url{http://code.google.com/p/protobuf/}}. Google Protocol Buffers is commonly known as Protobuf. It provides a flexible and easy to use data exchange format. It is possible to define Messages in $.proto$ files. These file can be compiled to generate code files in different languages, such as C++ or Java. This makes it simple to use Protobuf in the own code. The main reason for coosing Protobuf for communication is that it is used in the Gazebo API and in~\cite{{KlingenDA}}.\\
-On the one hand the movement orders from Fawkes will be executed in Gazebo and on the other hand the Gazebo plugins will simulate the sensing and will send the data to Fawkes. These two sides of the simulation will be developed in different levels. In the higher level, Gazebo tells Fawkes the exact position of the simulated Robotino and all movement commands are executed exactly. In the lower level, the movement is realized by using the physics engine and only the rotation of the wheels is simulated. Fawkes receives only raw laser-data and captured images.\\
-An important task of the thesis is the simulation of multiple robots controlled by separately running Fawkes instances in the same Gazebo environment at the same time. A global administrator plugin or a mechanism to map the Fawkes instances to the simulated Robotino plugins is necessary. The communication between the Fawkes instances has not to be simulated because the local network is available\footnote{This allows to run Fawkes and Gazebo on different machines and can be useful to test a already set up Robotino before a competition.}. The details of evaluation are discussed after the next section.\\
-Achieving abstraction in the implementation is important, so other developments beside LLSF can benefit from this thesis. The approach is to build additional abstraction layers for Fawkes and Gazebo plugins which encapsulates the communication between Fawkes and Gazebo as well as other functionality that is not domain specific. This is done as a second step to achieve a working simulation quicker and to benefit from the knowledge gained in the first run. The multi-level abstraction similar to~\cite{{MultiLevelAbstraction}} follows after the implementation of the high and low level simulation. Afterwards, it should be possible to choose the detail-level of the simulation. Another goal is to simulate the technical challenges of LLSF. For example there is a \textit{Whac-A-Mole} challenge. A robot has to reach machines, which give a light signals, as fast as possible. This can be simulated by changing the behavior of the machines in the simulation environment. The comparison of different multi-robot strategies to solve the LLSF task is a long term goal of Carologistics. A efficient strategy has to be found and optimized to get good results in LLSF. The thesis can compare two strategies (e.g. Master-Slave job assigning or a job blackboard) to prepare further work and show the capabilities of the simulator. In which detail this can be done depends on the time left for the thesis.\\
+This section presents the goals of the thesis and how they will be reached in detail:
+\begin{itemize}
+\item \textbf{Simulation environment for LLSF:} Developing a simulation of LLSF means in detail to create a realistic environment in the simulation similar to Figure 1. The communication between Fawkes and Gazebo will be realized by using Google's Protocol Buffers\footnote{\url{http://code.google.com/p/protobuf/}}. Google Protocol Buffers is commonly known as Protobuf. It provides a flexible and easy to use data exchange format. It is possible to define Messages in $.proto$ files. These file can be compiled to generate code files in different languages, such as C++ or Java. This makes it simple to use Protobuf in the own code. The main reason for coosing Protobuf for communication is that it is used in the Gazebo API and in~\cite{{KlingenDA}}.
+\end{itemize}
+On the one hand the movement orders from Fawkes will be executed in Gazebo and on the other hand the Gazebo plugins will simulate the sensing and will send the data to Fawkes. These two sides of the simulation will be developed in different levels.
+\begin{itemize}
+\item \textbf{High level simulation:} In the high level simulation, Gazebo tells Fawkes ground truth about the simulated Robotinos. This includes the exact position, gyro-values and state of the objects which should be found by vision. All movement commands are executed exactly as intended. This level of simulation allows debugging and comparison of multi-robot strategies on a high logical level. All perception and motion control problems are left out.
+\item \textbf{Low level simulation:} In the low level simulation, Fawkes receives only raw laser-data with and gaussian error and captured images. The movements are realized by using the physics engine and the rotation of the wheels. This allows a more realistic simulation and test of the whole system. For example, collisions between robots can be simulated. Furthermore it is possible to run isolated tests of perception and motion-control components.
+\item \textbf{Simulation of multiple and communicating agents:} An important task of the thesis is the simulation of multiple robots controlled by separately running Fawkes instances in the same Gazebo environment at the same time. A global administrator plugin or a mechanism to map the Fawkes instances to the simulated Robotino plugins is necessary. The communication between the Fawkes instances has not to be simulated because the local network is available\footnote{This allows to run Fawkes and Gazebo on different machines and can be useful to test a already set up Robotino before a competition.}. On the other hand, it is useful to simulate network latency and failure because there often are WiFi problems at RoboCup Competitions. Therefore the communication also can be simulated on different levels.\\
+\item \textbf{Expandability of the simulation:} Achieving abstraction in the implementation is important, so changes of LLSF or the Robotino can be easily integrated and other developments beside LLSF can benefit from this thesis. Two examples for such changes are that Festo recently presented a new Robotino version and the Technical Committee of LLSF decided to merge the two separate field to one big field. The approach, to tackle expandability, is to build abstract sensors and actuators for the simulation for Fawkes and Gazebo. The present and future components can then specify the abstract ones. The abstract components encapsulates the communication between Fawkes and Gazebo as well as other functionality that is not domain specific. Furthermore the robot and field model of the simulation has to be exchangeable. All this is done as a second step to achieve a working simulation quicker and to benefit from the knowledge gained in the first run.
+\item \textbf{Multi-level abstraction:} The multi-level abstraction similar to~\cite{{MultiLevelAbstraction}} follows after the implementation of the high and low level simulation. Afterwards, it should be possible to choose the detail-level of the simulation.
+\item \textbf{Simulation of LLSF challenges:} Another goal is to simulate the technical challenges of LLSF. For example there is a \textit{Whac-A-Mole} challenge. A robot has to reach machines, which give a light signals, as fast as possible. This can be simulated by changing the behavior of the machines in the simulation environment.
+\item \textbf{Comparison of different multi-robot strategies:} The comparison of different multi-robot strategies to solve the LLSF task is a long term goal of the Carologistics team. An efficient strategy has to be found and optimized to get good results in LLSF. The thesis can compare two strategies (e.g. the current strategy to assign fixed roles and lock resources or a job market system) to prepare further work and show the capabilities of the simulator. \textcolor{red}{more detail}
+\item \textbf{Qualitative and quantitative evaluation of simulation:} The goals of evaluation are shown in detail in the next section.
+\end{itemize}
 
 \subsection{Implementation Structure}
 As said before, the work will structurally consist of plugins for Gazebo and plugins for Fawkes. Similar to~\cite{{KlingenDA}} the Gazebo-plugins will be a robot-control plugin and an object-creator plugin. In addition, robot-sensor plugins and an LLSF-control plugin, which controls the machines and pucks to provide the LLSF game logic,  are needed. On the other side, there will be Fawkes plugins  for the sensors and for the Robotino to control the movements.
