@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,11pt,hidelinks]{article}
 
 %%%%%%%%%
 %%usees%%
@@ -15,7 +15,7 @@
 \usepackage{footnote}
 \usepackage{caption}
 \usepackage{color}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{cite}
 
 
@@ -23,6 +23,7 @@
 %%%%%%%%%
 %%Title%%
 %%%%%%%%%
+
 \author{Frederik Zwilling 304314}
 \title{Bachelor-Thesis Proposal:\\ Simulation of the RoboCup Logistic League with Fawkes and Gazebo for Multi-Robot Coordination Evaluation}
 \begin{document}
@@ -96,8 +97,7 @@ The omni-directional wheels of the Robotino work in the same way, but have a dif
 Another related work is~\cite{{SurveillanceSystem}}. It uses Gazebo and Player to simulate a surveillance system with Pioneer3AT robots. In this system several robots have to monitor an outdoor area and find possible intruders. Therefore, the robots have to spread over the area and coordinate their movements. The simulation was important for the development of the system because it could quickly simulate different areas and situations.\\
 The 3D-Soccer-Simulation League in the RoboCup uses SimSpark as simulator\footnote{\url{http://www.robocupgermanopen.de/sites/default/files/rules_GO_2013_3Dsim.pdf}}. In this league two teams of eleven NAO robots each play in the simulation. The competition and comparison between the different approaches of multi-agent strategies make this league interesting for the thesis. There are some works such as~\cite{{SoccerChampion}} which show the capability of the simulator to simulate complex movements and agent architectures.
 \subsection{Multi-Robot Coordination Strategies}
-\textcolor{red}{market}\\
-An example of complex multi-robot coordination strategies, that the simulation should be able to test, is \textit{Murdoch}. Murdoch was presented by~\cite{DissMurdoch} and is an auction-based task allocation strategy. It solves a special instance of the \textit{Optimal Assignment Problem}. The Optimal Assignment Problem is to assign $n$ weighted jobs to $m$ workers with nonnegative skill ratings $h_{i,j}$ for each worker-job combination. Each worker is capable of doing one job at a time and each job can only be done by one worker. The task is to find the assignment which optimizes the performance, taking into account the weights of the jobs and the skill ratings of the workers to the jobs. The Murdoch method was especially developed 
+An example of complex multi-robot coordination strategies, that the simulation should be able to test, is \textit{Murdoch}. However, the thesis covers simpler approaches at the first place. Murdoch was presented by~\cite{DissMurdoch} and is an auction-based task allocation strategy. It solves a special instance of the \textit{Optimal Assignment Problem}. The Optimal Assignment Problem is to assign $n$ weighted jobs to $m$ workers with nonnegative skill ratings $h_{i,j}$ for each worker-job combination. Each worker is capable of doing one job at a time and each job can only be done by one worker. The task is to find the assignment which optimizes the performance, taking into account the weights of the jobs and the skill ratings of the workers to the jobs. The Murdoch method was especially developed 
 for multi-robot scenarios. Therefore, it was designed to be able to handle robot failure and communication message loss. If a robot discovers a new task, it becomes an auctioneer and publishes a broadcast message to inform other robots about the task. All robots that are capable of doing the task calculate a metric of how well they probably will perform on the task. This metric is sent as a bid to the auctioneer. Finally the auctioneer decides after a predefined time interval which robot gets the task and informs this robot. After the allocation, the auctioneer observes the progress of the task and starts a new auction if the robot assigned in the first place fails. This method is decentralized but not optimal. However, \cite{DissMurdoch}~showed that the method performs well in different multi-agent tasks.\\
 
 \section{Details of Work}
@@ -114,7 +114,7 @@ On the one hand the movement orders from Fawkes will be executed in Gazebo and o
 \item \textbf{Expandability of the simulation:} Achieving abstraction in the implementation is important, so changes of LLSF or the Robotino can easily be integrated and other developments beside LLSF can benefit from this thesis. Two examples for such changes are that Festo recently presented a new Robotino version and the Technical Committee of LLSF decided to merge the two separate fields to one big field. The approach, to tackle expandability, is to build abstract sensors and actuators for the simulation for Fawkes and Gazebo. The present and future components can then specify the abstract ones. The abstract components encapsulate the communication between Fawkes and Gazebo as well as other functionality that is not domain specific. Furthermore the robot and field model of the simulation have to be exchangeable. All this is done as a second step to achieve a working simulation more quickly and to benefit from the knowledge gained in the first run.
 \item \textbf{Multi-level abstraction:} The multi-level abstraction similar to~\cite{{MultiLevelAbstraction}} follows after the implementation of the high and low level simulation. Afterwards, it should be possible to choose the detail-level of the simulation.
 \item \textbf{Simulation of LLSF challenges:} Another goal is to simulate the technical challenges of LLSF. For example there is a \textit{Whack-A-Mole} challenge. A robot has to reach machines, which give light signals, as fast as possible. This can be simulated by changing the behavior of the machines in the simulation environment.
-\item \textbf{Comparison of different multi-robot strategies:} The comparison of different multi-robot strategies to solve the LLSF task is a long term goal of the Carologistics team. An efficient strategy has to be found and optimized to get good results in LLSF. The thesis compares strategies (e.g. the current role-based strategy, a simple job market system and Murdoch) to prepare further work and to show the capabilities of the simulator.
+\item \textbf{Comparison of different multi-robot strategies:} The comparison of different multi-robot strategies to solve the LLSF task is a long term goal of the Carologistics team. An efficient strategy has to be found and optimized to get good results in LLSF. The thesis compares strategies to prepare further work and to show the capabilities of the simulator. Strategies that can be compared are the current role-based approach, Murdoch and a job market system. The job market system decides which tasks have to be done and assigns tasks to idle robots. Therefore the robots have to inform the job market about their world belief and the success or failure of their tasks.
 \item \textbf{Qualitative and quantitative evaluation of simulation:} The evaluation-goals are shown in detail in the next section.
 \end{itemize}
 
