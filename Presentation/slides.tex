@@ -23,11 +23,11 @@
 \frametitle{Overview}
 \begin{enumerate}
 \item Motivation
-\item \textcolor{gray}{Background}
-\item \textcolor{gray}{Related Work}
-\item \textcolor{gray}{Goals}
-\item \textcolor{gray}{Evaluation}
-\item \textcolor{gray}{Conclusion}
+\item Background
+\item Related Work
+\item Goals
+\item Evaluation
+\item Conclusion
 \end{enumerate}
 \end{frame}
 
@@ -35,28 +35,92 @@
 \begin{frame}
 \frametitle{Motivation}
 \begin{multicols}{2}
-Autonomous Multi-Robot Systems are useful:
+\begin{figure}
+\only<1>{\includegraphics[width=140pt,heigth=100pt]{pics/kiva.jpg}\\}
+\only<2>{\includegraphics[width=140pt,heigth=100pt]{pics/llsf.jpg}\\}
+\only<3->{\includegraphics[width=140pt,heigth=100pt]{pics/rimes.jpg}\\}
+\end{figure}
+Fields with multi-robot systems:
 \begin{itemize}
 \item<1-> in warehousing
 \item<2-> in logistics
 \item<3-> and many other domains
 \end{itemize}
-\begin{figure}
-\only<1>{\includegraphics[width=130pt,heigth=80pt]{pics/kiva.jpg}\\}
-\only<2>{\includegraphics[width=130pt,heigth=80pt]{pics/llsf.jpg}\\}
-\only<3->{\includegraphics[width=130pt,heigth=80pt]{pics/rimes.jpg}\\}
-\end{figure}
 \end{multicols}
-\pause
-\begin{multicols}{2}
-and difficult to test and evaluate because of:
+\pause \pause \pause 
 \begin{itemize}
-\item<4->
-\item<5->
-\item<6->
+\item[$\Rightarrow$] Multi-robot systems are useful and about to get more important
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem-Solution}
+\begin{multicols}{2}
+Testing Problems:
+\begin{itemize}
+\item Need of environment and robots
+\item Setup of the Robots
+\item Separately testing of high level components
+\item Effort scaling with the number of robots
+\item Time-consuming comparison of multi-agent strategies 
+\item[$\Rightarrow$] Testing is time and resource consuming
+\end{itemize}
+Advantages of a Simulator:
+\begin{itemize}
+\item Simulated environment and robots
+\item Only setup of the software
+\item Providing ground truth simulation
+\item Adding more robots more easily
+\item Simulation running over night or in parallel
+\item[$\Rightarrow$] Simulation saves time and resources
 \end{itemize}
 \end{multicols}
 \end{frame}
+
+\begin{frame}
+\frametitle{RoboCup Logistic League}
+\fboxsep=0pt
+\noindent%
+\begin{minipage}[]{0.48\linewidth}
+\begin{figure}
+\includegraphics[width=150pt,heigth=120pt]{pics/llsfLeague.png}\\
+\end{figure}
+\end{minipage}%
+\hfill%
+\begin{minipage}[]{0.48\linewidth}
+League:
+\begin{itemize}
+\item Part of RoboCup since 2012
+\item Testbed for logistic robots in a competitive factory automation scenario
+\end{itemize}
+Task:
+\begin{itemize}
+\item Produce and deliver ordered products by feeding machines with resources and semi-finished products
+\item Optimize workflow and performance of the system
+\end{itemize}
+%Environment:
+%\begin{itemize}
+%\item Up to three Robotino robots
+%\item 5.6m x 5.6m factory area
+%\item Machines which indicate their state with light signals
+%\item Pucks represent resources and products
+%\end{itemize}
+\end{minipage}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Fawkes}
+\begin{itemize}
+\item Open Source robot software framework
+\item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Gazebo}
+\end{frame}
+
 
 
 \end{document}
