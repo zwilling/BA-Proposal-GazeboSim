@@ -7,7 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usetheme{Warsaw}
+\usetheme{Madrid}
 \title{Bachelor-Thesis Proposal}
 \subtitle{Simulation of the RoboCup Logistic League with Fawkes and Gazebo for Multi-Robot Coordination Evaluation}
 \author {Frederik Zwilling}
@@ -23,8 +23,7 @@
 \frametitle{Overview}
 \begin{enumerate}
 \item Motivation
-\item Background
-\item Related Work
+\item Software Foundation
 \item Goals
 \item Evaluation
 \item Conclusion
@@ -42,12 +41,13 @@
 \end{figure}
 Fields with multi-robot systems:
 \begin{itemize}
-\item<1-> in warehousing
-\item<2-> in logistics
-\item<3-> and many other domains
+\item<1-> warehousing
+\item<2-> logistics
+\item<3-> space exploration
+\item<4-> many other domains
 \end{itemize}
 \end{multicols}
-\pause \pause \pause 
+\pause \pause \pause \pause 
 \begin{itemize}
 \item[$\Rightarrow$] Multi-robot systems are useful and about to get more important
 \end{itemize}
@@ -108,17 +108,32 @@ Task:
 \end{minipage}
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Fawkes}
+An Open Source robot software framework
 \begin{itemize}
-\item Open Source robot software framework
-\item 
+\item Developed and used primarily at KBSG
+\item Component-based software design
+\item Blackboard communication infrastructure\\ Plugins communicate through interfaces
+\item[$\Rightarrow$] Easy exchange of sensor/actuator plugins by simulation plugins
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Gazebo}
+\begin{multicols}{2}
+An Open Source Robot Simulator
+\begin{figure}
+\includegraphics[scale=0.125]{pics/gazebo.jpg}
+\end{figure}
+\begin{itemize}
+\item Ogre 3D Graphics Engine %Reflections
+\item Open Dynamics Physics Engine %Slippery (Odom)
+\item Plugin design approach
+\item Already modeled Robots and Sensors %Hokujo
+\item Highly founded
+\end{itemize}
+\end{multicols}
 \end{frame}
 
 
