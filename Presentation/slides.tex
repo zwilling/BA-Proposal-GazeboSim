@@ -19,16 +19,15 @@
 \frame{\titlepage}
 
 %Übersicht
-\begin{frame}
-\frametitle{Overview}
-\begin{enumerate}
-\item Motivation
-\item Software Foundation
-\item Goals
-\item Evaluation
-\item Conclusion
-\end{enumerate}
-\end{frame}
+%\begin{frame}
+%\frametitle{Overview}
+%\begin{enumerate}
+%\item Motivation
+%\item Software Foundation
+%\item Goals
+%\item Conclusion
+%\end{enumerate}
+%\end{frame}
 
 %Motivation
 \begin{frame}
@@ -43,11 +42,10 @@ Fields with multi-robot systems:
 \begin{itemize}
 \item<1-> warehousing
 \item<2-> logistics
-\item<3-> space exploration
-\item<4-> many other domains
+\item<3-> many other domains
 \end{itemize}
 \end{multicols}
-\pause \pause \pause \pause 
+\pause \pause \pause 
 \begin{itemize}
 \item[$\Rightarrow$] Multi-robot systems are useful and about to get more important
 \end{itemize}
@@ -59,9 +57,9 @@ Fields with multi-robot systems:
 Testing Problems:
 \begin{itemize}
 \item Need of environment and robots
-\item Setup of the Robots
+\item Setup of the Robots %Effort scaleing with number of robots
 \item Separately testing of high level components
-\item Effort scaling with the number of robots
+%\item Effort scaling with the number of robots
 \item Time-consuming comparison of multi-agent strategies 
 \item[$\Rightarrow$] Testing is time and resource consuming
 \end{itemize}
@@ -70,7 +68,7 @@ Advantages of a Simulator:
 \item Simulated environment and robots
 \item Only setup of the software
 \item Providing ground truth simulation
-\item Adding more robots more easily
+%\item Adding more robots more easily in the simulation
 \item Simulation running over night or in parallel
 \item[$\Rightarrow$] Simulation saves time and resources
 \end{itemize}
@@ -78,7 +76,7 @@ Advantages of a Simulator:
 \end{frame}
 
 \begin{frame}
-\frametitle{RoboCup Logistic League}
+\frametitle{Logistic League sponsored by Festo (LLSF)}
 \fboxsep=0pt
 \noindent%
 \begin{minipage}[]{0.48\linewidth}
@@ -90,12 +88,12 @@ Advantages of a Simulator:
 \begin{minipage}[]{0.48\linewidth}
 League:
 \begin{itemize}
-\item Part of RoboCup since 2012
+\item Part of RoboCup competition
 \item Testbed for logistic robots in a competitive factory automation scenario
 \end{itemize}
 Task:
 \begin{itemize}
-\item Produce and deliver ordered products by feeding machines with resources and semi-finished products
+\item Produce and deliver ordered products by feeding machines% with resources and semi-finished products
 \item Optimize workflow and performance of the system
 \end{itemize}
 %Environment:
@@ -122,7 +120,7 @@ An Open Source robot software framework
 \begin{frame}
 \frametitle{Gazebo}
 \begin{multicols}{2}
-An Open Source Robot Simulator
+An Open Source robot simulator
 \begin{figure}
 \includegraphics[scale=0.125]{pics/gazebo.jpg}
 \end{figure}
@@ -130,12 +128,72 @@ An Open Source Robot Simulator
 \item Ogre 3D Graphics Engine %Reflections
 \item Open Dynamics Physics Engine %Slippery (Odom)
 \item Plugin design approach
-\item Already modeled Robots and Sensors %Hokujo
+\item Already supports some robots and sensors %Hokujo
 \item Highly founded
 \end{itemize}
 \end{multicols}
+\begin{itemize}
+\item[$\Rightarrow$] Suitable simulator for the thesis and future work
+\end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Goals (1)}
+Simulation environment for LLSF
+\begin{itemize}
+\item Communication Fawkes-Gazebo
+\item Modeling the environment with behavior
+%\item Implement machine behavior, rules, ...
+\end{itemize}
+Simulation of sensors and actuators
+\begin{itemize}
+\item High level simulation\\(e.g. provide ground truth, exact movement without collision)
+\item Low level simulation\\(e.g. laser sensor data, movement by simulating the wheels)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Goals (2)}
+Multi-agent simulation
+\begin{itemize}
+\item Multiple robots in the simulation
+\item Fawkes instance - simulated robot allocation
+%\item Communication between agents
+\end{itemize}
+Expandability for future changes/extensions
+\begin{itemize}
+\item General interfaces between Fawkes and Gazebo
+\item Modularity
+\item Dokumentation
+\end{itemize}
+%Multi-level abstraction
+%LLSF Challenges
+\end{frame}
+
+\begin{frame}
+\frametitle{Multi-Agent Strategies, Evaluation}
+Comparison of multi-agent strategies
+\begin{itemize}
+\item Current role-based approach vs. dynamic role allocation
+\item Different roles of the third agent (e.g. production vs. recycling role)
+\end{itemize}
+Evaluation
+\begin{itemize}
+\item Qualitative\\(if and how well the simulation works)
+\item Quantitative\\(resource usage, time difference, scalability)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+\item Multi-Robot Systems getting more important
+\item Development/Testing difficult and time-consuming
+\item[$\Rightarrow$] Simulation is a key to efficient development/testing
+\item Goals: LLSF simulation, high/low level simulation, expabdability, comparison of multi-agent strategies
+\item Short presentation of current state of development
+\end{itemize}
+\end{frame}
 
 
 \end{document}
