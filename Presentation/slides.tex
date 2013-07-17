@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[]{beamer}
 \usepackage{color}
 \usepackage{listings}
 \usepackage{verbatim}
@@ -34,9 +34,9 @@
 \frametitle{Motivation}
 \begin{multicols}{2}
 \begin{figure}
-\only<1>{\includegraphics[width=140pt,heigth=100pt]{pics/kiva.jpg}\\}
-\only<2>{\includegraphics[width=140pt,heigth=100pt]{pics/llsf.jpg}\\}
-\only<3->{\includegraphics[width=140pt,heigth=100pt]{pics/rimes.jpg}\\}
+\only<1>{\includegraphics[width=140pt]{pics/kiva.jpg}\\}
+\only<2>{\includegraphics[width=140pt]{pics/llsf.jpg}\\}
+\only<3->{\includegraphics[width=140pt]{pics/rimes.jpg}\\}
 \end{figure}
 Fields with multi-robot systems:
 \begin{itemize}
@@ -56,13 +56,15 @@ Fields with multi-robot systems:
 \begin{multicols}{2}
 Testing Problems:
 \begin{itemize}
-\item Need of environment and robots
-\item Setup of the Robots %Effort scaleing with number of robots
+\item Need of environment and robots 
+\item Setup of the robots  %Effort scaleing with number of robots
 \item Separately testing of high level components
 %\item Effort scaling with the number of robots
-\item Time-consuming comparison of multi-agent strategies 
+\item Time-consuming comparison of multi-agent strategies
+\pause
 \item[$\Rightarrow$] Testing is time and resource consuming
 \end{itemize}
+\pause
 Advantages of a Simulator:
 \begin{itemize}
 \item Simulated environment and robots
@@ -70,9 +72,14 @@ Advantages of a Simulator:
 \item Providing ground truth simulation
 %\item Adding more robots more easily in the simulation
 \item Simulation running over night or in parallel
+\pause
 \item[$\Rightarrow$] Simulation saves time and resources
 \end{itemize}
 \end{multicols}
+\pause
+\begin{block}{Thesis Topic}
+Developing a multi-robot simulation to evaluate multi-agent strategies
+\end{block}
 \end{frame}
 
 \begin{frame}
@@ -91,6 +98,7 @@ League:
 \item Part of RoboCup competition
 \item Testbed for logistic robots in a competitive factory automation scenario
 \end{itemize}
+\pause
 Task:
 \begin{itemize}
 \item Produce and deliver ordered products by feeding machines% with resources and semi-finished products
@@ -112,7 +120,8 @@ An Open Source robot software framework
 \begin{itemize}
 \item Developed and used primarily at KBSG
 \item Component-based software design
-\item Blackboard communication infrastructure\\ Plugins communicate through interfaces
+\item Blackboard communication infrastructure%,\\ plugins communicate through interfaces
+\pause
 \item[$\Rightarrow$] Easy exchange of sensor/actuator plugins by simulation plugins
 \end{itemize}
 \end{frame}
@@ -132,6 +141,7 @@ An Open Source robot simulator
 \item Highly founded
 \end{itemize}
 \end{multicols}
+\pause
 \begin{itemize}
 \item[$\Rightarrow$] Suitable simulator for the thesis and future work
 \end{itemize}
@@ -145,6 +155,7 @@ Simulation environment for LLSF
 \item Modeling the environment with behavior
 %\item Implement machine behavior, rules, ...
 \end{itemize}
+\pause
 Simulation of sensors and actuators
 \begin{itemize}
 \item High level simulation\\(e.g. provide ground truth, exact movement without collision)
@@ -160,6 +171,7 @@ Multi-agent simulation
 \item Fawkes instance - simulated robot allocation
 %\item Communication between agents
 \end{itemize}
+\pause
 Expandability for future changes/extensions
 \begin{itemize}
 \item General interfaces between Fawkes and Gazebo
@@ -177,6 +189,7 @@ Comparison of multi-agent strategies
 \item Current role-based approach vs. dynamic role allocation
 \item Different roles of the third agent (e.g. production vs. recycling role)
 \end{itemize}
+\pause
 Evaluation
 \begin{itemize}
 \item Qualitative\\(if and how well the simulation works)
@@ -188,9 +201,11 @@ Evaluation
 \frametitle{Conclusion}
 \begin{itemize}
 \item Multi-Robot Systems getting more important
-\item Development/Testing difficult and time-consuming
+\item Development/testing difficult and time-consuming
 \item[$\Rightarrow$] Simulation is a key to efficient development/testing
+\pause
 \item Goals: LLSF simulation, high/low level simulation, expabdability, comparison of multi-agent strategies
+\pause
 \item Short presentation of current state of development
 \end{itemize}
 \end{frame}
