@@ -1,0 +1,298 @@
+\documentclass[]{article}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \tikzstyle{bluebox}=[draw=blue!50,fill=blue!20,anchor=south west]
+    \tikzstyle{orangebox}=[draw=orange!80!black,fill=orange!80,anchor=south west]
+    \tikzstyle{component}=[bluebox,drop shadow={opacity=0.25},minimum width=2.6cm,minimum height=1.6cm]
+    \tikzstyle{speccomp}=[orangebox,drop shadow={opacity=0.25},minimum width=2.6cm,minimum height=1.6cm]
+    \tikzstyle{touchcomp}=[component,draw=orange!80,very thick]
+    \tikzstyle{semitcomp}=[touchcomp,dashed]
+    \tikzstyle{subcomp}=[bluebox,draw=blue!40,minimum width=1.3cm,minimum height=0.6cm]
+    \tikzstyle{senscomp}=[bluebox,drop shadow={opacity=0.25},minimum width=2.6cm,minimum height=1.2cm]
+    \tikzstyle{senstcomp}=[senscomp,draw=orange!80,very thick]
+    \tikzstyle{resource}=[bluebox,rounded corners,minimum height=1.0]
+    \tikzstyle{compsign}=[draw=blue!50,fill=blue!20]
+    \tikzstyle{compsignorange}=[draw=orange!50!black,fill=orange!80]
+    % Component Connection Start (ccs) and end (cce)
+    \tikzstyle{ccs}=[>=latex,-o,thick,color=blue!50]
+    \tikzstyle{cce}=[>=latex,)-,thick,color=blue!50]
+    \tikzstyle{conn}=[>=latex,thick,color=blue!50]
+    \tikzstyle{conncirc}=[draw=blue!50,fill=blue!50]
+
+    \node (naomanasim)    [touchcomp] at (0,4.0) {};
+    \node (naomotion)     [touchcomp] at (4.6,7.0) {};%\raisebox{0.8cm}{\footnotesize naomotion}};
+    \node (naomotion_act) [subcomp]   at (4.6cm + 1.2pt,7cm + 1.2pt) {\scriptsize act};
+    \node (naomotion_nav) [subcomp]   at (4.6cm + 1.25cm + 1.2pt,7cm + 1.2pt) {\scriptsize nav};
+    \node (skiller)       [speccomp]  at (11.6,4.6) {};
+    \node (agent)         [speccomp]  at (11.6,2.1) {};
+    \node (fvbase)        [semitcomp] at (0,0.6) {};
+    \node (odometry)      [senscomp]  at (4.6,5.0) {};
+    \node (naocampos)     [senscomp]  at (4.6,3.4) {};
+    \node (naolocalize)   [senscomp]  at (4.6,1.6) {};
+    \node (naoball)       [senstcomp] at (4.6,0) {};
+    \node (worldmodel)    [touchcomp,minimum width=6.2cm,rotate=90] at (10.4,0) {\footnotesize\textbf{worldmodel}};
+    \node (image)         [resource,minimum width=1.6cm,rotate=90] at (3.8,0.6) {\footnotesize Image};
+    \node (network)       [resource,minimum width=2.6cm,] at (11.6,0) {\footnotesize Network};
+
+    \draw [conn,dashed,thin] (naomanasim.west) .. controls +(0.65,-0.1) .. ($(naomanasim.west) + (1.3,0)$) .. controls +(0.65,0.1) .. (naomanasim.east);
+    \draw (naomanasim.north west) node [below right] {\footnotesize \textbf{naomana}};
+    \draw (naomanasim.south east) node [above left]  {\footnotesize \textbf{naosim}};
+
+    \draw (fvbase.north west) node [below right] {\footnotesize\textbf{fvbase}};
+    \draw (naoball.north west) node [below right] {\footnotesize\textbf{naoball}};
+    \draw (naolocalize.north west) node [below right] {\footnotesize\textbf{naolocalize}};
+    \draw (naomotion.north west) node [below right] {\footnotesize\textbf{naomotion}};
+    \draw (skiller.north west) node [below right] {\footnotesize\textbf{skiller}};
+    \draw (agent.north west) node [below right] {\footnotesize\textbf{agent}};
+    \draw (odometry.north west) node [below right] {\footnotesize\textbf{odometry}};
+    \draw (naocampos.north west) node [below right] {\footnotesize\textbf{naocampos}};
+
+
+    \draw [conn,->] (fvbase.east) -- (image.north);
+    \draw [conn,->] (image.south |- naolocalize.south) -- +(0.35,0) |- (naolocalize.west);
+    \draw [conn,->] (image.south |- naoball.north) -- +(0.35,0) |- (naoball.west);
+
+    \draw [ccs] (naoball.east) -- +(0.8,0);
+    \draw [cce] ($(naoball.east) + (0.8,0)$) -- (naoball.east -| worldmodel.north);
+    \draw ($(naoball.east) + (0.8,0)$) node [below,inner ysep=0.4em] {\scriptsize ball pos};
+
+    \draw [ccs] (naolocalize.east) -- +(0.8,0);
+    \draw [cce] ($(naolocalize.east) + (0.8,0)$) -- (naolocalize.east -| worldmodel.north);
+    \draw ($(naolocalize.east) + (0.8,0)$) node (robotpose_1) [below,inner ysep=0.4em] {\scriptsize robot pose};
+
+    \draw [ccs] (odometry.east) -- +(0.6,0);
+    \draw [cce] ($(odometry.east) + (0.6,0)$) -- (odometry.east -| worldmodel.north);
+    \draw [conn] ($(odometry.east) + (1.2,0)$) -- +(0,-2.6) -| (naolocalize.north);
+    \draw [conncirc] ($(odometry.east) + (1.2,0)$) circle (0.05);
+    \draw ($(odometry.east) + (0.8,0)$) node (odom_lab) [above,inner ysep=0.4em] {\scriptsize odometry};
+
+    \draw [ccs] (naocampos.east) -- +(0.6,0);
+    \draw [cce] ($(naocampos.east) + (0.6,0)$) -- ($(naocampos.east) + (1.1,0)$)
+      .. controls ($(naocampos.east) + (1.2,0.1)$)
+      .. ($(naocampos.east) + (1.3,0)$)
+      -- (naocampos.east -| worldmodel.north);
+    \draw [conn] ($(naocampos.east) + (0.95,0)$) -- +(0,-0.8)
+      -- ($(naolocalize.north) + (-0.4,0.4)$)
+      -- ($(naolocalize.north) + (-0.4,0)$);
+    \draw [conncirc] ($(naocampos.east) + (0.95,0)$) circle (0.05);
+    \draw ($(naocampos.east) + (0.5,0)$) node [above,inner ysep=0.5em] {\scriptsize cam};
+    \draw ($(naocampos.east) + (0.5,0)$) node [below,inner ysep=0.6em] {\scriptsize pos};
+
+    \draw [ccs] (naomotion_act.south) -- +(0,-0.38);
+    \draw [cce] ($(naomotion_act.south) + (0,-0.38)$) -- (naomotion_act.south |- odometry.north);
+    \draw [conn] ($(naomotion_act.south) + (0,-0.65)$) -- +(-1,0)
+      -- ($(naomotion_act.south |- odometry.west) + (-1.0,0.1)$)
+      .. controls ($(naomotion_act.south |- odometry.west) + (-1.1,0)$)
+      .. ($(naomotion_act.south |- odometry.west) + (-1.0,-0.1)$)
+      -- ($(naomotion_act.south |- naocampos.west) + (-1.0,0.2)$)
+      -- ($(naocampos.west) + (0,0.2)$);
+    \draw [conncirc] ($(naomotion_act.south) + (0,-0.65)$) circle (0.05);
+    \draw ($(naomotion_act.south) + (0,-0.3)$) node [right,inner xsep=0.5em] {\scriptsize motion data};
+
+    \draw [conn,<->,dotted] (worldmodel.south |- network.west) -- (network.west);
+
+    % worldmodel -> skiller/agent connections
+    \draw [ccs] ($(worldmodel.south) + (0,1.1)$) -- +(0.4,0);
+    \draw [cce] ($(worldmodel.south) + (0.4,1.1)$) -- +(0.4,0);
+    \draw [conn] ($(worldmodel.south) + (0.8,1.1)$) |- (skiller.west);
+    \draw [conn] ($(worldmodel.south) + (0.8,1.1)$) |- (agent.west);
+    \draw [conncirc] ($(worldmodel.south) + (0.8,1.1)$) circle (0.05);
+    \draw ($(worldmodel.south) + (0.4,1.1)$) node [right,rotate=90,inner xsep=0.6em] {\scriptsize info};
+    \draw ($(worldmodel.south) + (0.4,1.1)$) node [left,rotate=90,inner xsep=0.6em] {\scriptsize world};
+
+    \draw [ccs] (skiller.south) -- +(0,-0.5);
+    \draw [cce] ($(skiller.south) + (0,-0.5)$) -- (agent.north);
+    \draw ($(agent.north) + (0,0.5)$) node [right,inner xsep=0.4em] {\scriptsize orders};
+
+    \draw [ccs] (naomotion_nav.east) -- +(2,0);
+    \draw [cce] ($(naomotion_nav.east) + (2,0)$) -| (skiller.north);
+
+    \draw ($(naomotion.east) + (2.0,-0.4)$) node [above,inner ysep=0.4em] {\scriptsize navigation/motion};
+
+    \draw [ccs] (naomanasim.east) -- +(0.8,0);
+    \draw [cce] ($(naomanasim.east) + (0.8,0)$) -- +(0.6,0);
+    \draw [conn] ($(naomanasim.east |- odometry.west) + (1.4,0)$) |- (odometry.west);
+    \draw [conncirc] ($(naomanasim.east |- odometry.west) + (1.4,0)$) circle (0.05);
+    \draw [conn] ($(naomanasim.east) + (1.4,0)$) -- ($(naomanasim.east |- naocampos.west) + (1.4,-0.2)$) -- ($(naocampos.west) + (0,-0.2)$);
+    \draw [conn] ($(naomanasim.east) + (1.4,0)$) |- (naomotion_act.west);
+    \draw [conncirc] ($(naomanasim.east) + (1.4,0)$) circle (0.05);
+    \draw ($(naomanasim.east) + (0.7,0)$) node [right,inner xsep=0.6em,text width=1.2cm,rotate=90] {\scriptsize nao hardware};
+    \draw ($(naomanasim.east) + (0.7,0)$) node [left,inner xsep=0.6em,text width=0.9cm,rotate=90] {\scriptsize NaoQi motion};
+
+    % Component signs
+    \newcommand{\compsign}[3][0]{%
+      \draw [#3,rotate around={#1:(#2)}] ($(#2.north east) - (0.5,0.5)$) rectangle +(0.4,0.4);
+      \draw [#3,rotate around={#1:(#2)}] ($(#2.north east) - (0.58,0.26)$) rectangle +(0.16,0.08);
+      \draw [#3,rotate around={#1:(#2)}] ($(#2.north east) - (0.58,0.42)$) rectangle +(0.16,0.08);
+    }
+    \compsign{naomanasim}{compsign}
+    \compsign{fvbase}{compsign}
+    \compsign{naomotion}{compsign}
+    \compsign{naoball}{compsign}
+    \compsign{naolocalize}{compsign}
+    \compsign[90]{worldmodel}{compsign}
+    \compsign{skiller}{compsignorange}
+    \compsign{agent}{compsignorange}
+    \compsign{odometry}{compsign}
+    \compsign{naocampos}{compsign}
+
+
+    % Flags
+    \pgfdeclareimage[width=0.41cm]{flag-at}{../images/flags/flag-at}
+    \pgfdeclareimage[width=0.41cm]{flag-za}{../images/flags/flag-za}
+    \pgftext[top,right,at=\pgfpoint{7.12cm}{5.6cm}]{\pgfuseimage{flag-at}}
+    \pgftext[top,right,at=\pgfpoint{7.12cm}{4.0cm}]{\pgfuseimage{flag-at}}
+    \pgftext[top,right,at=\pgfpoint{7.12cm}{2.2cm}]{\pgfuseimage{flag-at}}
+    \pgftext[top,right,at=\pgfpoint{7.13cm}{8.03cm}]{\pgfuseimage{flag-za}}
+    %\pgftext[bottom,left,at=\pgfpoint{11.6cm}{4.4cm}]{\pgfimage[height=0.6cm]{../images/flag-de}}
+
+    %\draw [draw=blue!20,fill=white!20,opacity=0.5] (7.12,5.6)  rectangle +(-0.41,-0.29);
+    %\draw [draw=blue!20,fill=white!20,opacity=0.5] (7.12,4.0)  rectangle +(-0.41,-0.29);
+    %\draw [draw=blue!20,fill=white!20,opacity=0.5] (7.12,2.2)  rectangle +(-0.41,-0.29);
+    %\draw [draw=blue!20,fill=white!20,opacity=0.5] (7.13,8.03) rectangle +(-0.41,-0.28);
+
+  \end{tikzpicture}
+  \caption{\Fawkes{} Component Configuration for the Nao}
+  \label{fig:nao-components}
+  \vspace{-0.2cm}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \tikzstyle{bluebox}=[draw=blue!50,fill=blue!20,anchor=south west]
+    \tikzstyle{orangebox}=[draw=orange!80!black,fill=orange!80,anchor=south west]
+    \tikzstyle{component}=[bluebox,drop shadow={opacity=0.25},minimum width=2.6cm,minimum height=1.6cm]
+    \tikzstyle{speccomp}=[orangebox,drop shadow={opacity=0.25},minimum width=2.6cm,minimum height=1.6cm]
+    \tikzstyle{touchcomp}=[component,draw=orange!80,very thick]
+    \tikzstyle{semitcomp}=[touchcomp,dashed]
+    \tikzstyle{subcomp}=[bluebox,draw=blue!40,minimum width=0.8666cm,minimum height=0.6cm]
+    \tikzstyle{senscomp}=[bluebox,drop shadow={opacity=0.25},minimum width=2.6cm,minimum height=1.2cm]
+    \tikzstyle{senstcomp}=[senscomp,draw=orange!80,very thick]
+    \tikzstyle{sensstcmp}=[senscomp,draw=orange!80,very thick,dashed]
+    \tikzstyle{resource}=[bluebox,rounded corners,minimum height=1.0]
+    \tikzstyle{compsign}=[draw=blue!50,fill=blue!20]
+    \tikzstyle{compsignorange}=[draw=orange!50!black,fill=orange!80]
+    % Component Connection Start (ccs) and end (cce)
+    \tikzstyle{ccs}=[>=latex,-o,thick,color=blue!50]
+    \tikzstyle{cce}=[>=latex,)-,thick,color=blue!50]
+    \tikzstyle{conn}=[>=latex,thick,color=blue!50]
+    \tikzstyle{conncirc}=[draw=blue!50,fill=blue!50]
+
+    \node (kicker)        [component] at (0,5.5) {};
+    \node (navigator)     [component] at (0,3.5) {};%\raisebox{0.8cm}{\footnotesize navigator}};
+    \node (navigator_act) [subcomp]   at (0.0,3.5) {\scriptsize mot};
+    \node (navigator_odo) [subcomp]   at (0.8666,3.5) {\scriptsize odo};
+    \node (navigator_nav) [subcomp]   at (1.7333,3.5) {\scriptsize nav};
+    \node (fvbase)        [semitcomp] at (0,0) {};
+    \node (omni-loc)      [senscomp]  at (4.6,4.8) {};
+    \node (omni-ball)     [sensstcmp] at (4.6,3.2) {};
+    \node (omni-field)    [senscomp]  at (4.6,1.6) {};
+    \node (stereo-obs)    [senscomp]  at (4.6,0) {};
+    \node (worldmodel)    [touchcomp,minimum width=6.0cm,rotate=90] at (10.4,0) {\footnotesize\textbf{worldmodel}};
+    \node (skiller)       [speccomp]  at (11.6,4.4) {};
+    \node (agent)         [speccomp]  at (11.6,1.9) {};
+    \node (image)         [resource,minimum width=1.6cm,rotate=90] at (3.8,0) {\footnotesize Image};
+    \node (network)       [resource,minimum width=2.6cm,] at (11.6,0) {\footnotesize Network};
+
+    \draw (kicker.north west) node [below right] {\footnotesize \textbf{kicker}};
+
+    \draw (fvbase.north west) node [below right] {\footnotesize\textbf{fvbase}};
+    \draw (stereo-obs.north west) node [below right] {\footnotesize\textbf{stereo-obs}};
+    \draw (omni-field.north west) node [below right] {\footnotesize\textbf{omni-field}};
+    \draw (navigator.north west) node [below right] {\footnotesize\textbf{navigator}};
+    \draw (skiller.north west) node [below right] {\footnotesize\textbf{skiller}};
+    \draw (agent.north west) node [below right] {\footnotesize\textbf{agent}};
+    \draw (omni-loc.north west) node [below right] {\footnotesize\textbf{omni-loc}};
+    \draw (omni-ball.north west) node [below right] {\footnotesize\textbf{omni-ball}};
+
+
+    \draw [conn,->] (fvbase.east) -- (image.north);
+    \draw [conn,->] (image.south) -- +(0.4,0) coordinate (A) |- ($(omni-loc.west) + (0,-0.2)$);
+    \draw [conncirc] (A) circle (0.05);
+    \draw [conn,->] (A |- omni-ball.west) -- (omni-ball.west);
+    \draw [conn,->] (A |- omni-field.west) -- (omni-field.west);
+    \draw [conn,->] (A) |- (stereo-obs.west);
+
+    \draw [ccs] (kicker.east) -| +(0.4,0.8) -- +(1.2,0.8) coordinate (A);
+    \draw [cce] (A) -| ($(skiller.north) + (0.4,0)$);
+    \draw (A) node [below right,inner ysep=0.2em] {\scriptsize kicking};
+
+    \draw [ccs] (navigator_odo.south) |- +(1.9,-0.4) coordinate (A);
+    \draw [cce] (A) -- +(0.6,0) |- ($(omni-loc.west) + (0,0.2)$);
+    \draw (A) node [below,inner ysep=0.3em] {\scriptsize odometry};
+
+    \draw [ccs] (navigator_nav.east) -| +(0.8,2.8) -- +(1.6,2.8) coordinate (A);
+    \draw [cce] (A) -| ($(skiller.north) - (0.4,0)$);
+    \draw (A) node [below right,inner ysep=0.2em] {\scriptsize navigation};
+
+    \draw [ccs] (navigator_act.north) |- ($(navigator_act.north -| navigator_odo.north) + (0,0.2)$) coordinate (A);
+    \draw [cce] (A) -| (navigator_nav.north);
+
+    % Vision connections
+    \draw [ccs] (stereo-obs.east) -- +(0.8,0) coordinate (A);
+    \draw [cce] (A) -- (stereo-obs.east -| worldmodel.north);
+    \draw (A) node [below,inner ysep=0.4em] {\scriptsize obstacles};
+
+    \draw [ccs] (omni-field.east) -- +(0.8,0) coordinate (A);
+    \draw [cce] (A) -- (omni-field.east -| worldmodel.north);
+    \draw (A) node (robotpose_1) [below,inner ysep=0.4em] {\scriptsize obstacles};
+
+    \draw [ccs] (omni-loc.east) -- +(0.8,0) coordinate (A);
+    \draw [cce] (A) -- (omni-loc.east -| worldmodel.north);
+    \draw (A) node [below,inner ysep=0.4em] {\scriptsize robot pose};
+
+    \draw [ccs] (omni-ball.east) -- +(0.8,0) coordinate (A);
+    \draw [cce] (A) -- (omni-ball.east -| worldmodel.north);
+    \draw (A) node [below,inner ysep=0.5em] {\scriptsize ball pos};
+
+    \draw [conn,<->,dotted] (worldmodel.south |- network.west) -- (network.west);
+
+    \draw [ccs] ($(worldmodel.south) + (0,1.1)$) -- +(0.4,0);
+    \draw [cce] ($(worldmodel.south) + (0.4,1.1)$) -- +(0.4,0);
+    \draw [conn] ($(worldmodel.south) + (0.8,1.1)$) |- (skiller.west);
+    \draw [conn] ($(worldmodel.south) + (0.8,1.1)$) |- (agent.west);
+    \draw [conncirc] ($(worldmodel.south) + (0.8,1.1)$) circle (0.05);
+    \draw ($(worldmodel.south) + (0.4,1.1)$) node [right,rotate=90,inner xsep=0.6em] {\scriptsize info};
+    \draw ($(worldmodel.south) + (0.4,1.1)$) node [left,rotate=90,inner xsep=0.6em] {\scriptsize world};
+
+    \draw [ccs] (skiller.south) -- +(0,-0.5);
+    \draw [cce] ($(skiller.south) + (0,-0.5)$) -- (agent.north);
+    \draw ($(agent.north) + (0,0.5)$) node [right,inner xsep=0.4em] {\scriptsize orders};
+
+    % Component signs
+    \newcommand{\compsign}[3][0]{%
+      \draw [#3,rotate around={#1:(#2)}] ($(#2.north east) - (0.5,0.5)$) rectangle +(0.4,0.4);
+      \draw [#3,rotate around={#1:(#2)}] ($(#2.north east) - (0.58,0.26)$) rectangle +(0.16,0.08);
+      \draw [#3,rotate around={#1:(#2)}] ($(#2.north east) - (0.58,0.42)$) rectangle +(0.16,0.08);
+    }
+    \compsign{kicker}{compsign}
+    \compsign{fvbase}{compsign}
+    \compsign{navigator}{compsign}
+    \compsign{stereo-obs}{compsign}
+    \compsign{omni-field}{compsign}
+    \compsign[90]{worldmodel}{compsign}
+    \compsign{skiller}{compsignorange}
+    \compsign{agent}{compsignorange}
+    \compsign{omni-loc}{compsign}
+    \compsign{omni-ball}{compsign}
+
+  \end{tikzpicture}
+  \caption{\Fawkes{} Component Configuration for the MSL Robot}
+  \label{fig:msl-components}
+  \vspace{-0.2cm}
+\end{figure}
+\end{document}

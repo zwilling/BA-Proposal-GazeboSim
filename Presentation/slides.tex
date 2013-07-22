@@ -12,7 +12,7 @@
 \subtitle{Simulation of the RoboCup Logistic League with Fawkes and Gazebo for Multi-Robot Coordination Evaluation}
 \author {Frederik Zwilling}
 \institute{RWTH Aachen}
-\date{23.07.13}
+\date{23.07.2013}
 \subject{Multi-Robot Simulation}
 
 \begin{document}
@@ -42,13 +42,39 @@ Fields with multi-robot systems:
 \begin{itemize}
 \item<1-> warehousing
 \item<2-> logistics
-\item<3-> many other domains
+\item<3-> space exploration
 \end{itemize}
 \end{multicols}
 \pause \pause \pause 
 \begin{itemize}
 \item[$\Rightarrow$] Multi-robot systems are useful and about to become more important
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Logistic League sponsored by Festo (LLSF)}
+\fboxsep=0pt
+\noindent%
+\begin{minipage}[]{0.48\linewidth}
+\begin{figure}
+\includegraphics[width=150pt,heigth=120pt]{pics/llsfLeague.png}\\
+\end{figure}
+\end{minipage}%
+\hfill%
+\begin{minipage}[]{0.48\linewidth}
+League:
+\begin{itemize}
+\item Part of RoboCup competition
+\item Testbed for logistic robots in a competitive factory automation scenario
+\end{itemize}
+\pause
+Task:
+\begin{itemize}
+\item Produce and deliver products by feeding machines% with resources and semi-finished products
+\item Optimize workflow and performance of the system
+\item Being robust against failure
+\end{itemize}
+\end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -83,62 +109,17 @@ Developing a multi-robot simulation to evaluate multi-agent strategies
 \end{frame}
 
 \begin{frame}
-\frametitle{Logistic League sponsored by Festo (LLSF)}
-\fboxsep=0pt
-\noindent%
-\begin{minipage}[]{0.48\linewidth}
-\begin{figure}
-\includegraphics[width=150pt,heigth=120pt]{pics/llsfLeague.png}\\
-\end{figure}
-\end{minipage}%
-\hfill%
-\begin{minipage}[]{0.48\linewidth}
-League:
-\begin{itemize}
-\item Part of RoboCup competition
-\item Testbed for logistic robots in a competitive factory automation scenario
-\end{itemize}
-\pause
-Task:
-\begin{itemize}
-\item Produce and deliver ordered products by feeding machines% with resources and semi-finished products
-\item Optimize workflow and performance of the system
-\end{itemize}
-%Environment:
-%\begin{itemize}
-%\item Up to three Robotino robots
-%\item 5.6m x 5.6m factory area
-%\item Machines which indicate their state with light signals
-%\item Pucks represent resources and products
-%\end{itemize}
-\end{minipage}
-\end{frame}
-
-\begin{frame}
-\frametitle{Fawkes}
-An Open Source robot software framework
-\begin{itemize}
-\item Developed and used primarily at KBSG
-\item Component-based software design
-\item Blackboard communication infrastructure%,\\ plugins communicate through interfaces
-\pause
-\item[$\Rightarrow$] Easy exchange of sensor/actuator plugins by simulation plugins
-\end{itemize}
-\end{frame}
-
-\begin{frame}
 \frametitle{Gazebo}
 \begin{multicols}{2}
 An Open Source robot simulator
 \begin{figure}
-\includegraphics[scale=0.125]{pics/gazebo.jpg}
+\includegraphics[scale=0.13]{pics/gazebo.jpg}
 \end{figure}
 \begin{itemize}
-\item Ogre 3D Graphics Engine %Reflections
-\item Open Dynamics Physics Engine %Slippery (Odom)
-\item Plugin design approach
-\item Already supports some robots and sensors %Hokujo
-\item Highly founded
+\item Powerful graphics and physics engines %Reflections, Slippery (Odom)
+\item Already supports some robots and sensors (e.g. Hokuyo laser sensor)
+\item Related work with Gazebo (Scene Reconstruction, Multi-Level Abstraction)
+\item Extensive support
 \end{itemize}
 \end{multicols}
 \pause
@@ -148,28 +129,50 @@ An Open Source robot simulator
 \end{frame}
 
 \begin{frame}
-\frametitle{Goals of the Thesis}
-Simulation environment for LLSF
+\frametitle{Fawkes}
+\begin{multicols}{2}
+\begin{figure}
+\only<1>{\includegraphics[scale=0.26]{components/simplefawkes.jpg}}
+\only<2>{\includegraphics[scale=0.26]{components/lowsim.jpg}}
+\only<3>{\includegraphics[scale=0.26]{components/highsim.jpg}}
+\end{figure}
+An Open Source robot software framework
 \begin{itemize}
-\item Modeling the environment with behavior
-%\item Implement machine behavior, rules, ...
-\end{itemize}
+\item Developed and used primarily at KBSG
+\item Component-based software design
+\item Blackboard communication infrastructure%,\\ plugins communicate through interfaces
 \pause
+\end{itemize}
+\end{multicols}
+\begin{itemize}
+\item[$\Rightarrow$] Easy exchange of sensor/actuator plugins by simulation plugins
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Goals of the Thesis}
 Simulation of sensors and actuators
 \begin{itemize}
 \item High level simulation
 \item Low level simulation
 \end{itemize}
+\pause
+Simulation environment for LLSF
+\begin{itemize}
+\item Modeling the reactive environment
+%\item Implement machine behavior, rules, ...
+\end{itemize}
+\pause
 Multi-agent simulation
 \begin{itemize}
-\item Fawkes instance - simulated robot allocation
+\item Mapping Fawkes instances - simulated robots
 %\item Communication between agents
 \end{itemize}
 \pause
 Expandability for future changes/extensions
 \begin{itemize}
 \item General interfaces between Fawkes and Gazebo
-\item Modularity
+\item Modularity (e.g. exchange webcam with stereo camera)
 \end{itemize}
 %Multi-level abstraction
 %LLSF Challenges
@@ -180,12 +183,12 @@ Expandability for future changes/extensions
 Comparison of multi-agent strategies
 \begin{itemize}
 \item Current role-based approach vs. dynamic role allocation
-\item Different roles of the third agent (e.g. production vs. recycling role)
+\item Comparing different roles (e.g. production vs. recycling role)
 \end{itemize}
 \pause
 Evaluation
 \begin{itemize}
-\item Qualitative\\(if and how well the simulation works)
+\item Qualitative\\(differences real world - simulation)
 \item Quantitative\\(resource usage, scalability)
 \end{itemize}
 \end{frame}
@@ -197,7 +200,13 @@ Evaluation
 \item Development/testing difficult and time-consuming
 \item[$\Rightarrow$] Simulation is a key to efficient development/testing
 \pause
-\item Goals: LLSF simulation, high/low level simulation, expandability, comparison of multi-agent strategies
+\item Goals: 
+\begin{itemize}
+\item LLSF simulation
+\item  high/low level simulation
+\item  expandability
+\item  comparison of multi-agent strategies
+\end{itemize}
 \pause
 %\item Short presentation of current state of development
 \end{itemize}
